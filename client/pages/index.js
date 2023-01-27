@@ -6,6 +6,8 @@ import Navbar from "./Navbar.js";
 import Hero from "./Hero.js";
 import Connect from "./Connect.js";
 import Buy from "./Buy.js";
+import Donates from "./Donates.js";
+import Footer from "./footer.js";
 
 export default function Home() {
   const [state, setState] = useState({
@@ -70,6 +72,8 @@ export default function Home() {
       </section>
       {/* <Connect state={state}></Connect> */}
       <Buy state={state}></Buy>
+      <Donates state={state}></Donates>
+      <Footer></Footer>
     </>
   );
 }

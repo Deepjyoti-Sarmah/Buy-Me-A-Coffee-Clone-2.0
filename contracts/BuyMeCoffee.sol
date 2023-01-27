@@ -1,12 +1,13 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.9;
 
-import "@openzeppelin/contracts/access/Ownable.sol";
+// import "@openzeppelin/contracts/access/Ownable.sol";
 import "hardhat/console.sol";
 
-contract BuyMeCoffee is Ownable{
+contract BuyMeCoffee {
 
     event NewDonate(address indexed tipper, uint256 value, string name, string messsage);
+    event WithdrawTips(uint256 _timestamp, uint256 _amount);
 
     struct Donate{
         address tipper;
@@ -20,13 +21,22 @@ contract BuyMeCoffee is Ownable{
 
     // Address of contract deployer. Marked payable so that
     // we can withdraw to this address later.
-    // address payable owner;
+    address payable owner;
 
-    // constructor(){
-    //     // Store the address of the deployer as a payable address.
-    //     // When we withdraw funds, we'll withdraw here.
-    //     owner = payable(msg.sender);
-    // }
+    modifier onlyOwner() {
+        require(msg.sender == owner, "You are not the owner");
+        _;
+    }
+
+    constructor(){
+        // Store the address of the deployer as a payable address.
+        // When we withdraw funds, we'll withdraw here.
+        owner = payable(msg.sender);
+    }
+
+    function owners() public view returns(address){
+        return owner;
+    }
 
     // Buys a tea for the contract owner.
     // _name name of the tea buyer
@@ -65,7 +75,18 @@ contract BuyMeCoffee is Ownable{
             msg.sender
         );
 
-        (bool success, ) = msg.sender.call{value: address(this).balance}("");
+        // (bool success, ) = msg.sender.call{value: address(this).balance}("");
+
+        uint256 balance = address(this).balance;
+        (bool success,) = msg.sender.call{value: balance}("");
         require(success, "Withdraw failed");
+
+        emit WithdrawTips(block.timestamp, balance);
     }
+
+     // function to change address of owner
+    function changeOwner(address _newOwner) public onlyOwner {
+        owner = payable(_newOwner);
+    }
+
 }

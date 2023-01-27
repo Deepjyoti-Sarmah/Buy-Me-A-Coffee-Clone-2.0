@@ -22,7 +22,7 @@ describe("Buy me coffee contract", function () {
     it("Should set the right owner", async function () {
       const { buymeCoffee, owner } = await loadFixture(deployBuyMeCoffee);
 
-      expect(await buymeCoffee.owner()).to.equal(owner.address);
+      expect(await buymeCoffee.owners()).to.equal(owner.address);
     });
   });
 
