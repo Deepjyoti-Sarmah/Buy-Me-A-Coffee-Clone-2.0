@@ -33,6 +33,8 @@
     "typescript": "^4.9.4"
   },
   "dependencies": {
+    "@arcana/auth": "^1.0.1",
+    "@arcana/auth-react": "^0.0.3",
     "@openzeppelin/contracts": "^4.8.1",
     "dotenv": "^16.0.3"
   }

@@ -9,6 +9,8 @@ import Donates from "./contents/Donates.js";
 import Footer from "./contents/Footer.js";
 import React from "react";
 
+// import { Auth, useAuth } from "@arcana/auth-react";
+
 export default function Home() {
   const [state, setState] = useState({
     provider: null,
@@ -58,6 +60,10 @@ export default function Home() {
 
     connectWallet();
   }, []);
+
+  // const onLogin = () => {
+  //   // Route to authenticated page
+  // };
 
   return (
     <>
