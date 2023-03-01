@@ -2,11 +2,7 @@
 
 **Website** :- https://buymemilk.netlify.app
 
-# <<<<<<< HEAD
-
 Try running some of the following tasks:
-
-> > > > > > > 3faf6f0 (a decentralized creator funding app)
 
 - A buy me a coffee dapp, which allows users to send any amount of ETH greater than 0 to the owner of the contract
 - The owner of the contract can withdraw these donations at any time they wish
